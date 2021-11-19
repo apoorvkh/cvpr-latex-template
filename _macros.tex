@@ -1,0 +1,46 @@
+%% PACKAGES (also see _header.tex)
+
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{color, colortbl}
+\usepackage{stfloats}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{subcaption}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[accsupp]{axessibility}
+
+%% MACROS
+
+% \newcommand{\commandname}{string\xspace}
+% \definecolor{colorname}{rgb}{0.92,0.49,0.19}
+
+% General
+
+\newcommand{\para}[1]{{\noindent \textbf{#1.}}}
+
+\newcommand{\supp}{supplemental material\xspace}
+\ifarxiv \renewcommand{\supp}{appendix\xspace} \fi
+
+\newcommand{\todo}[1]{{\textcolor{red}{[TODO: #1]}}}
+
+\newenvironment{packed_enum}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{2pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+
+\newenvironment{packed_item}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{2pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}

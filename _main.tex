@@ -1,0 +1,42 @@
+%% ADD PACKAGES TO _MACROS.TEX
+
+\newif\ifreview \newif\ifarxiv \newif\ifcamera
+%% Toggle paper compilation mode: \reviewtrue OR \arxivtrue OR \cameratrue
+\reviewtrue
+
+\def\cvprPaperID{0000}
+\def\confName{CVPR}
+\def\confYear{2022}
+
+\input{_header}
+
+\begin{document}
+
+\title{Paper title}
+
+\author{
+    Author 1 \thanks{Equal contribution} \qquad
+    Author 2 \footnotemark[1] \qquad
+    Author 3 \\
+    Same Institution \\
+    {\tt\small \{email, addresses\}@inst.org}
+}
+
+\maketitle
+
+\begin{abstract} \input{00_abstract} \end{abstract}
+\input{01_intro}
+\input{02_related}
+
+\input{03_method}
+
+\input{10_conclusion}
+
+{\small
+\bibliographystyle{ieee_fullname}
+\bibliography{11_references}
+}
+
+\ifarxiv \clearpage \input{12_appendix} \fi
+
+\end{document}

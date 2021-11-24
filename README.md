@@ -12,8 +12,6 @@ Getting started:
 - Add each paper section as a new file (e.g. `03_method.tex`), then `\input` these in `_main.tex`
 - Add references into `11_references.bib`
 - Add appendix sections in `12_appendix.tex`. <br> *Note:* when referring to these sections in text (e.g. as "supplemental material" or "appendix"), use `\supp` instead, which is automatically set to the appropriate keyword depending on if the PDF is for arXiv or CVPR.
-- Compile with either `_main.tex` or `_supplementary.tex` as the main document
-  - At the top of the corresponding file (i.e. [line 3](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_main.tex#L3)), set ONE of the following: `\reviewtrue` OR `\arxivtrue` OR `\cameratrue`
-  - These will generate the PDF accordingly as a review, arXiv, or camera-ready submission
+- Compile with either `_main.tex` or `_supplementary.tex` as the main document <br> *Note:* At the top of the corresponding file (i.e. [line 3](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_main.tex#L3)), set one of the following: `\reviewtrue` OR `\arxivtrue` OR `\cameratrue`. These will generate the PDF accordingly as a review, arXiv, or camera-ready submission.
 
 Feel free to suggest changes or packages/macros you think are widely useful via a PR!

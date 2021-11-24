@@ -2,10 +2,11 @@
 
 \usepackage{times}
 \usepackage{epsfig}
+\usepackage[table,xcdraw]{xcolor}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{placeins}
-\usepackage[table,xcdraw]{xcolor}
+\usepackage{booktabs}
 \usepackage{color, colortbl}
 \usepackage{stfloats}
 \usepackage{enumitem}
@@ -14,17 +15,21 @@
 \usepackage{xspace}
 \usepackage{url}
 \usepackage{subcaption}
+\usepackage{xcolor}
 \usepackage[hang,flushmargin]{footmisc}
 \usepackage[accsupp]{axessibility}
 
 %% MACROS
+
+% \newcommand{\authorname}[1]{{\textcolor{blue}{[Author: #1]}}}
+% ...
 
 % \newcommand{\commandname}{string\xspace}
 % \definecolor{colorname}{rgb}{0.92,0.49,0.19}
 
 % General
 
-\newcommand{\para}[1]{{\noindent \textbf{#1.}}}
+\newcommand{\bpar}[1]{{\noindent \textbf{#1.}}}
 
 \newcommand{\supp}{supplemental material\xspace}
 \ifarxiv \renewcommand{\supp}{appendix\xspace} \fi
@@ -44,3 +49,4 @@
   \setlength{\parskip}{2pt}
   \setlength{\parsep}{0pt}
 }{\end{itemize}}
+

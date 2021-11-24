@@ -3,27 +3,20 @@
 \reviewtrue % \reviewtrue OR \arxivtrue OR \cameratrue
 
 \input{_header}
+\myexternaldocument{_main}
 \begin{document}
 
 %% TITLE
-\title{\paperTitle}
+\title{\paperTitle \\ Supplemental Material}
 \author{\authorblock}
 \maketitle
 %%
 
-\begin{abstract} \input{00_abstract} \end{abstract}
-\input{01_intro}
-\input{02_related}
-
-\input{03_method}
-
-\input{10_conclusion}
+\input{12_appendix}
 
 {\small
 \bibliographystyle{ieee_fullname}
 \bibliography{11_references}
 }
-
-\ifarxiv \clearpage \input{12_appendix} \fi
 
 \end{document}

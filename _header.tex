@@ -9,7 +9,25 @@
 \usepackage{amssymb}
 \usepackage{booktabs}
 
-\input{_macros}
+\input{_macros}  % Add packages to _macros.tex
+
+%% For cross-referencing labels between documents
+\usepackage{xr-hyper}
+
+\makeatletter
+\newcommand*{\addFileDependency}[1]{
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+
+\makeatother
+\newcommand*{\myexternaldocument}[1]{
+    \externaldocument{#1}
+    \addFileDependency{#1.tex}
+    \addFileDependency{#1.aux}
+}
+%%
 
 \usepackage[pagebackref,breaklinks,colorlinks]{hyperref}
 \usepackage[capitalize]{cleveref}

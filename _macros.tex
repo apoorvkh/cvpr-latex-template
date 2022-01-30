@@ -11,6 +11,7 @@
 \usepackage{stfloats}
 \usepackage{enumitem}
 \usepackage{tabularx}
+\usepackage{xstring}
 \usepackage{multirow}
 \usepackage{xspace}
 \usepackage{url}
@@ -35,6 +36,18 @@
 \ifarxiv \renewcommand{\supp}{appendix\xspace} \fi
 
 \newcommand{\todo}[1]{{\textcolor{red}{[TODO: #1]}}}
+
+% Reviewer commands (1 to 5), e.g. \R{1}, \R{2}
+\newcommand{\R}[1]{{%
+    \textbf{%
+        \ifstrequal{#1}{1}{\textcolor{red}{R#1}}{%
+        \ifstrequal{#1}{2}{\textcolor{blue}{R#1}}{%
+        \ifstrequal{#1}{3}{\textcolor{magenta}{R#1}}{%
+        \ifstrequal{#1}{4}{\textcolor{teal}{R#1}}{%
+                           \textcolor{cyan}{R#1}%
+        }}}}%
+    }%
+}}
 
 \newenvironment{packed_enum}{
 \begin{enumerate}

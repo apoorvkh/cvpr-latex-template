@@ -22,10 +22,11 @@ Compile with `_main.tex` as the main document.
 
 ## 📦 Packages and Macros
 
-Add your own packages and macros to `_macros.tex`. Some handy built-in macros below:
+Add your own packages and macros to `_macros.tex`. Some handy built-in macros:
 
-- Use `\supp` to refer to "supplemental material" or "appendix" in text. Keyword automatically determined based on compilation mode.
+- `\cref{}` to refer to sections/tables/figures by their `\label{}`.
 - `\parbf{}` is a bold paragraph header.
+- Use `\supp` to refer to "supplemental material" or "appendix" in text. Keyword automatically determined based on compilation mode.
 - `\todo{}`
 
 ## 📚 Supplementary
@@ -33,9 +34,11 @@ Add your own packages and macros to `_macros.tex`. Some handy built-in macros be
 Add supplemental material to `12_appendix.tex`. Compile with `_supplementary.tex` as the main document.
 
 - Set `\review` OR `\camera` in [line 2 of `_supplementary.tex`](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_supplementary.tex#L2).
+- You can refer to sections, references, figures, tables, etc. in the main document!
 
 ## 👿 Rebuttal
 
 Compile with `_rebuttal.tex` as the main document.
 
 - You can use `\R{1}`, `\R{2}`, etc. as colored references to reviewers.
+- You can refer to sections, references, figures, tables, etc. in the main document!

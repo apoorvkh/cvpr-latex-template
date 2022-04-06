@@ -1,12 +1,12 @@
 %% PACKAGES (also see cvpr_header.tex)
 
 \usepackage{times}
+\usepackage{microtype}
 \usepackage{epsfig}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{placeins}
-\usepackage{booktabs}
 \usepackage{color, colortbl}
 \usepackage{stfloats}
 \usepackage{enumitem}
@@ -18,7 +18,9 @@
 \usepackage{subcaption}
 \usepackage{xcolor}
 \usepackage[hang,flushmargin]{footmisc}
-\usepackage[accsupp]{axessibility}
+
+% Unfortunately, this package interferes with arxiv's stamp
+\ifcamera \usepackage[accsupp]{axessibility} \fi
 
 %% MACROS
 

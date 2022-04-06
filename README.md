@@ -16,7 +16,7 @@ Compile with `_main.tex` as the main document.
 
 ## 🔬 Main sections
 
-- Update the abstract in `00_abstract.tex` (without `\begin{abstract} ...`)
+- Update the abstract in `00_abstract.tex`
 - `\input` each paper section (e.g. `03_method.tex`) in `_main.tex`
 - Add references to `11_references.bib`
 
@@ -25,8 +25,8 @@ Compile with `_main.tex` as the main document.
 Add your own packages and macros to `_macros.tex`. Some handy built-in macros:
 
 - `\cref{}` to refer to sections/tables/figures by their `\label{}`.
-- `\parbf{}` is a bold paragraph header.
-- Use `\supp` to refer to "supplemental material" or "appendix" in text. Keyword automatically determined based on compilation mode.
+- `\nbf{}` is a bold paragraph header.
+- Use `\supp` to refer to "supplemental material" or "appendix" in text (automatically determined based on compilation mode).
 - `\todo{}`
 
 ## 📚 Supplementary
@@ -35,6 +35,13 @@ Add supplemental material to `12_appendix.tex`. Compile with `_supplementary.tex
 
 - Set `\review` OR `\camera` in [line 2 of `_supplementary.tex`](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_supplementary.tex#L2).
 - You can refer to sections, references, figures, tables, etc. in the main document!
+
+## 🗃️ Submitting to arXiv
+
+1. Overleaf: Submit -> arXiv -> Download project ZIP with submission files (e.g. .bbl)
+2. Delete the following files: `README.md`, `latexmkrc`, `_supplementary.tex`, and (important!) `_rebuttal.tex`.
+3. Optionally, run [arxiv-latex-cleaner](https://github.com/google-research/arxiv-latex-cleaner).
+4. Tar/gzip the produced files and upload.
 
 ## 👿 Rebuttal
 

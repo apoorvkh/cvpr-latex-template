@@ -6,6 +6,8 @@ You can fork this repo and import into [Overleaf](https://www.overleaf.com) (pre
 
 Feel free to suggest changes or packages/macros you think are widely useful via a PR!
 
+**Note: Up-to-date for CVPR 2023!**
+
 ## 📝 Compilation
 
 Compile with `_main.tex` as the main document.

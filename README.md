@@ -1,10 +1,12 @@
 # CVPR / ICCV LaTeX Template⚡
 
-**Note: Up-to-date for CVPR and ICCV 2023!**
-
 This repo contains quickstart code for writing CVPR/ICCV papers in LaTeX. It is a direct extension of the [official template](https://github.com/MCG-NKU/CVPR_Template) (for CVPR 2022 and beyond) and is submission-ready.
 
-You can fork this repo and import into [Overleaf](https://www.overleaf.com) (preferred) or compile with `pdflatex`.
+**Up-to-date for CVPR and ICCV 2023.**
+
+**New: Available on [Overleaf](https://www.overleaf.com/read/zkbzbtcnrmvm)!** (Menu > Actions > Copy Project)
+
+You can also fork this repo and import into Overleaf or compile with `pdflatex`.
 
 Feel free to suggest changes or packages/macros you think are widely useful via a PR!
 

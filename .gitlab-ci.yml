@@ -1,0 +1,16 @@
+image: texlive/texlive:latest-full
+
+variables:
+  FILE_NAME: "root"
+
+stages:
+  - build
+
+pdflatex:
+  stage: build
+  script:
+    - latexmk -synctex=0 -interaction=nonstopmode --shell-escape -pdf -file-line-error $FILE_NAME.tex
+  artifacts:
+    paths:
+      - $FILE_NAME.pdf
+    expire_in: 4 weeks

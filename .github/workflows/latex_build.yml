@@ -1,0 +1,19 @@
+name: Build LaTeX document
+on: [push]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: root.tex
+          args: -synctex=0 -interaction=nonstopmode --shell-escape -pdf -file-line-error
+      - name: Save PDF as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: root.pdf
+          path: root.pdf

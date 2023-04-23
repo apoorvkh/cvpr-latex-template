@@ -1,0 +1,127 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/*.aux": true,
+        "**/*.bbl": true,
+        "**/*.fls": true,
+        "**/*.ind": true,
+        "**/*.nlo": true,
+        "**/*.lot": true,
+        "**/*.out": true,
+        "**/*.ldx": true,
+        "**/*.blg": true,
+        "**/*.idx": true,
+        "**/*.ilg": true,
+        "**/*.lof": true,
+        "**/*.toc": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.log": true,
+        "**/*.bcf": true,
+        "**/*.run.xml": true,
+        "**/*.acn": true,
+        "**/*.glo": true,
+        "**/*.ist": true
+    },
+    "editor.wordWrap": "bounded",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "nickfode.latex-formatter",
+    "spellright.language": [
+        "en"
+    ],
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.intellisense.bibtexJSON.replace": {},
+    "latex-workshop.latex.pdfWatch.delay": 300,
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "tools": [
+                "bibtex"
+            ]
+        },
+        {
+            "name": "link-checker",
+            "tools": [
+                "pdflinkchecker"
+            ]
+        },
+        {
+            "name": "prepare arxiv",
+            "tools": [
+                "prepare_arxiv",
+            ]
+        },
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "--shell-escape",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflinkchecker",
+            "command": "pdflinkchecker",
+            "args": [
+                "%DIR%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "prepare_arxiv",
+            "command": "sh",
+            "args": [
+                "%DIR%/.devcontainer/misc/prepare_arxiv.sh"
+            ],
+            "env": {}
+        },
+    ]
+}

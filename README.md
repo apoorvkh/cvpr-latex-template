@@ -4,7 +4,7 @@ This repo contains quickstart code for writing CVPR/ICCV papers in LaTeX. It is 
 
 - **Available on [Overleaf](https://www.overleaf.com/read/zkbzbtcnrmvm)!** (Menu > Actions > Copy Project)
 - You can also fork this repo and import into Overleaf or compile with `pdflatex`.
-- Please see Alex Naumann's [fork](https://github.com/a-nau/cvpr-latex-template/tree/feature/devcontainer) which supports [LaTeX compilation in Visual Studio Code using Dev Containers](https://github.com/a-nau/latex-devcontainer).
+- Alex Naumann's [fork](https://github.com/a-nau/cvpr-latex-template/tree/feature/devcontainer) supports [LaTeX compilation in Visual Studio Code using Dev Containers](https://github.com/a-nau/latex-devcontainer)!
 
 Feel free to suggest changes or packages/macros you think are widely useful via a PR!
 

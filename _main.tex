@@ -9,7 +9,6 @@
 \title{\paperTitle}
 \author{\authorBlock}
 \maketitle
-%%
 
 \input{00_abstract}
 \input{01_intro}
@@ -20,10 +19,10 @@
 \input{10_conclusion}
 
 {\small
-\bibliographystyle{ieee_fullname}
+\bibliographystyle{ieeenat_fullname}
 \bibliography{11_references}
 }
 
-\ifarxiv \clearpage \input{12_appendix} \fi
+\ifarxiv \clearpage \appendix \input{12_appendix} \fi
 
 \end{document}

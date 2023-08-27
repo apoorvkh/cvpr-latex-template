@@ -1,9 +1,13 @@
 %% PACKAGES (also see cvpr_header.tex)
 
+\usepackage{graphicx}	
+\usepackage{amsmath}	
+\usepackage{amssymb}	
+\usepackage{booktabs}
 \usepackage{times}
 \usepackage{microtype}
 \usepackage{epsfig}
-\usepackage[table,xcdraw]{xcolor}
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{placeins}
@@ -50,17 +54,3 @@
         }}}}%
     }%
 }}
-
-\newenvironment{packed_enum}{
-\begin{enumerate}
-  \setlength{\itemsep}{1pt}
-  \setlength{\parskip}{2pt}
-  \setlength{\parsep}{0pt}
-}{\end{enumerate}}
-
-\newenvironment{packed_item}{
-\begin{itemize}
-  \setlength{\itemsep}{1pt}
-  \setlength{\parskip}{2pt}
-  \setlength{\parsep}{0pt}
-}{\end{itemize}}

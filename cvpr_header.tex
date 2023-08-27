@@ -3,11 +3,6 @@
 \ifrebuttal \usepackage[rebuttal]{cvpr} \fi
 \ifcamera \usepackage{cvpr} \fi
 
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{booktabs}
-
 \input{_macros}  % Add packages to _macros.tex
 
 %% For cross-referencing labels between documents
@@ -28,7 +23,8 @@
 }
 %%
 
-\usepackage[pagebackref,breaklinks,colorlinks]{hyperref}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,citecolor=cvprblue]{hyperref}
 \usepackage[capitalize]{cleveref}
 \crefname{section}{Sec.}{Secs.}
 \crefname{table}{Table}{Tables}

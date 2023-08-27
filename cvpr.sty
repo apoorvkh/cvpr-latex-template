@@ -1,36 +1,6 @@
 % ---------------------------------------------------------------
 %
-% The last version of CVPR/ICCV LaTeX template had been developed
-% by Paolo.Ienne@di.epfl.ch and awf@acm.org about 15 years ago.
-% That version suffered from several issues:
-% 1. Authors needed several individual files: cvpr.sty,
-%    cvpr_eso.sty, eso-pic.sty.
-% 2. For CVPR/ICCV rebuttals, another version of cvpr.sty was
-%    required.
-% 3. Several warnings arose due to deprecated options.
-%
-% More recently, Ming-Ming Cheng (cmm_spam@nankai.edu.cn) created
-% a single style file that helps to unify review, rebuttal, and
-% final versions with a class.
-%
-% This more recent style has been further modernized for CVPR 2022
-% by Stefan Roth (stefan.roth@NOSPAMtu-darmstadt.de).
-%
-% Acknowledgements: This file is built on the template by
-% Ming-Ming Cheng (https://github.com/MCG-NKU/CVPR_Template).
-% ---------------------------------------------------------------
-
-
-
-
-% ---------------------------------------------------------------
-%
-% $Id: cvpr.sty,v 1.3 2005/10/24 19:56:15 awf Exp $
-% by Paolo.Ienne@di.epfl.ch some mods by awf@acm.org
-%
-% ---------------------------------------------------------------
-%
-% no guarantee is given that the format corresponds perfectly to
+% No guarantee is given that the format corresponds perfectly to
 % IEEE 8.5" x 11" Proceedings, but most features should be ok.
 %
 % ---------------------------------------------------------------
@@ -54,43 +24,18 @@
 %   }
 % ---------------------------------------------------------------
 
-
-
-% ---------------------------------------------------------------
-%
-%\usepackage{eso-pic}
-%
-%%
-%% This is file `eso-pic.sty',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% eso-pic.dtx  (with options: `package')
-%%
-%% This is a generated file.
-%%
-%% Copyright (C) 1998-2002 by Rolf Niepraschk <niepraschk@ptb.de>
-%%
-%% This file may be distributed and/or modified under the conditions of
-%% the LaTeX Project Public License, either version 1.2 of this license
-%% or (at your option) any later version.  The latest version of this
-%% license is in:
-%%
-%%    http://www.latex-project.org/lppl.txt
-%%
-%% and version 1.2 or later is part of all distributions of LaTeX version
-%% 1999/12/01 or later.
-%%
-
-
-%
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesPackage{cvpr}[2021/08/23 Example LaTex class for IEEE CVPR]
+\ProvidesPackage{cvpr}[2024 Example LaTex class for IEEE CVPR]
 
 \RequirePackage{times}    % Integrate Times for here
 \RequirePackage{cite}     % Automatically ordered citations
 \RequirePackage{xspace}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{booktabs}
+\RequirePackage[numbers,sort&compress]{natbib}
+\setlength{\bibsep}{1pt plus 1pt minus 1pt}
 
 \RequirePackage{silence}  % Suppress unwanted warnings
 \hbadness=10000 \vbadness=10000 \vfuzz=30pt \hfuzz=30pt
@@ -116,7 +61,6 @@
 \DeclareOption{rebuttal}{\togglefalse{cvprfinal}\toggletrue{cvprrebuttal}}
 \DeclareOption{pagenumbers}{\toggletrue{cvprpagenumbers}}
 \DeclareOption*{\PackageWarning{cvpr}{Unkown option `\CurrentOption'}}
-
 \ProcessOptions\relax
 
 % Don't warn about missing author for rebuttal
@@ -130,7 +74,6 @@
 
 
 % ---------------------------------------------------------------
-%\input{everyshi.sty}
 \newcommand{\@EveryShipout@Hook}{}
 \newcommand{\@EveryShipout@AtNextHook}{}
 \newcommand*{\EveryShipout}[1]
@@ -296,18 +239,8 @@
     \fi
   \fi
 }
-%\setkeys{ESO}{subgridstyle=solid,pscoord=true,gridunit=mm}
-% \def\ProcessOptionsWithKV#1{%
-%   \let\@tempc\@empty
-%   \@for\CurrentOption:=\@classoptionslist\do{%
-%     \@ifundefined{KV@#1@\CurrentOption}%
-%     {}{\edef\@tempc{\@tempc,\CurrentOption,}}}%
-%   \edef\@tempc{%
-%     \noexpand\setkeys{#1}{\@tempc\@ptionlist{\@currname.\@currext}}
-%   }%
-%   \@tempc
-%   \AtEndOfPackage{\let\@unprocessedoptions\relax}}%
-%\ProcessOptionsWithKV{ESO}%
+
+
 \newcommand\ESO@div[2]{%
   \@tempdima=#1\relax\@tempdimb=\ESO@gridunit\relax
   \@tempdimb=#2\@tempdimb\divide\@tempdima by \@tempdimb%
@@ -436,19 +369,6 @@
 \setlength{\evensidemargin}{-.304in}
 
 
-% memento from size10.clo
-% \normalsize{\@setfontsize\normalsize\@xpt\@xiipt}
-% \small{\@setfontsize\small\@ixpt{11}}
-% \footnotesize{\@setfontsize\footnotesize\@viiipt{9.5}}
-% \scriptsize{\@setfontsize\scriptsize\@viipt\@viiipt}
-% \tiny{\@setfontsize\tiny\@vpt\@vipt}
-% \large{\@setfontsize\large\@xiipt{14}}
-% \Large{\@setfontsize\Large\@xivpt{18}}
-% \LARGE{\@setfontsize\LARGE\@xviipt{22}}
-% \huge{\@setfontsize\huge\@xxpt{25}}
-% \Huge{\@setfontsize\Huge\@xxvpt{30}}
-
-
 % Suppress page numbers when the appropriate option is given
 \iftoggle{cvprpagenumbers}{}{%
   \pagestyle{empty}
@@ -485,8 +405,7 @@
   }
 }
 
-\def\@maketitle
-   {
+\def\@maketitle{
    \newpage
    \null
    \iftoggle{cvprrebuttal}{\vspace*{-.3in}}{\vskip .375in}
@@ -494,32 +413,30 @@
       % smaller title font only for rebuttal
       \iftoggle{cvprrebuttal}{{\large \bf \@title \par}}{{\Large \bf \@title \par}}
       % additional two empty lines at the end of the title
-      \iftoggle{cvprrebuttal}{\vspace*{-22pt}}{\vspace*{24pt}}
-      {
-      \large
-      \lineskip .5em
-      \begin{tabular}[t]{c}
-        \iftoggle{cvprfinal}{
-          \@author
-        }{
-          \iftoggle{cvprrebuttal}{}{
-            Anonymous \confName~submission\\
-            \vspace*{1pt}\\
-            Paper ID \cvprPaperID
+      \iftoggle{cvprrebuttal}{\vspace*{-22pt}}{\vspace*{24pt}}{
+        \large
+        \lineskip .5em
+        \begin{tabular}[t]{c}
+          \iftoggle{cvprfinal}{
+            \@author
+          }{
+            \iftoggle{cvprrebuttal}{}{
+              Anonymous \confName~submission\\
+              \vspace*{1pt}\\
+              Paper ID \paperID
+            }
           }
-        }
-      \end{tabular}
-      \par
+        \end{tabular}
+        \par
       }
       % additional small space at the end of the author name
       \vskip .5em
       % additional empty line at the end of the title block
       \vspace*{12pt}
    \end{center}
-   }
+}
 
-\def\abstract
-   {%
+\def\abstract{%
    % Suppress page numbers when the appropriate option is given
    \iftoggle{cvprpagenumbers}{}{%
      \thispagestyle{empty}
@@ -527,10 +444,9 @@
    \centerline{\large\bf Abstract}%
    \vspace*{12pt}%
    \it%
-   }
+}
 
-\def\endabstract
-   {
+\def\endabstract{%
    % additional empty line at the end of the abstract
    \vspace*{12pt}
    }
@@ -539,13 +455,13 @@
 
 % correct heading spacing and type
 \def\cvprsection{\@startsection {section}{1}{\z@}
-   {10pt plus 2pt minus 2pt}{7pt} {\large\bf}}
+   {-10pt plus -2pt minus -2pt}{7pt} {\large\bf}}
 \def\cvprssect#1{\cvprsection*{#1}}
 \def\cvprsect#1{\cvprsection{\hskip -1em.~#1}}
 \def\section{\@ifstar\cvprssect\cvprsect}
 
 \def\cvprsubsection{\@startsection {subsection}{2}{\z@}
-   {8pt plus 2pt minus 2pt}{6pt} {\elvbf}}
+   {-8pt plus -2pt minus -2pt}{6pt} {\elvbf}}
 \def\cvprssubsect#1{\cvprsubsection*{#1}}
 \def\cvprsubsect#1{\cvprsubsection{\hskip -1em.~#1}}
 \def\subsection{\@ifstar\cvprssubsect\cvprsubsect}
@@ -571,45 +487,77 @@
 \ifnum#2<0\advance\cv@tmpc1\relax-\fi
 \loop\ifnum\cv@tmpc<#1\relax0\advance\cv@tmpc1\relax\fi \ifnum\cv@tmpc<#1 \repeat
 \cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi \relax\the\cv@tmpc@}%
-% \makevruler[<SCALE>][<INITIAL_COUNT>][<STEP>][<DIGITS>][<HEIGHT>]
-\def\makevruler[#1][#2][#3][#4][#5]{\begingroup\offinterlineskip
-\textheight=#5\vbadness=10000\vfuzz=120ex\overfullrule=0pt%
-\global\setbox\cvprrulerbox=\vbox to \textheight{%
-{\parskip=0pt\hfuzz=150em\cv@boxheight=\textheight
-\cv@lineheight=#1\global\cvprrulercount=#2%
-\cv@tot\cv@boxheight\divide\cv@tot\cv@lineheight\advance\cv@tot2%
-\cv@refno1\vskip-\cv@lineheight\vskip1ex%
-\loop\setbox\cv@tmpbox=\hbox to0cm{{\cvprtenhv\hfil\fillzeros[#4]\cvprrulercount}}%
-\ht\cv@tmpbox\cv@lineheight\dp\cv@tmpbox0pt\box\cv@tmpbox\break
-\advance\cv@refno1\global\advance\cvprrulercount#3\relax
-\ifnum\cv@refno<\cv@tot\repeat}}\endgroup}%
 \makeatother
 % ----- end of vruler
+
+%% Define linenumber setup
+\RequirePackage[switch,mathlines]{lineno}
+
+% Line numbers in CVPR blue using font from \cvprtenhv
+\renewcommand\linenumberfont{\cvprtenhv\color[rgb]{.5,.5,1}}
+
+\renewcommand\thelinenumber{\fillzeros[3]{\arabic{linenumber}}}
+
+\setlength{\linenumbersep}{.75cm}
+
+% Bug: An equation with $$ ... $$ isn't numbered, nor is the previous line.
+
+% Patch amsmath commands so that the previous line and the equation itself
+% are numbered. Bug: multiline has an extra line number.
+% https://tex.stackexchange.com/questions/461186/how-to-use-lineno-with-amsmath-align
+\RequirePackage{etoolbox} %% <- for \pretocmd, \apptocmd and \patchcmd
+
+\newcommand*\linenomathpatch[1]{%
+  \expandafter\pretocmd\csname #1\endcsname {\linenomath}{}{}%
+  \expandafter\pretocmd\csname #1*\endcsname {\linenomath}{}{}%
+  \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+  \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
+}
+\newcommand*\linenomathpatchAMS[1]{%
+  \expandafter\pretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
+  \expandafter\pretocmd\csname #1*\endcsname {\linenomathAMS}{}{}%
+  \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+  \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
+}
+
+%% Definition of \linenomathAMS depends on whether the mathlines option is provided
+\expandafter\ifx\linenomath\linenomathWithnumbers
+\let\linenomathAMS\linenomathWithnumbers
+%% The following line gets rid of an extra line numbers at the bottom:
+\patchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
+\else
+\let\linenomathAMS\linenomathNonumbers
+\fi
+
+\iftoggle{cvprfinal}{}{
+% Add the numbers
+\linenumbers
+\AtBeginDocument{%
+  \linenomathpatch{equation}%
+  \linenomathpatchAMS{gather}%
+  \linenomathpatchAMS{multline}%
+  \linenomathpatchAMS{align}%
+  \linenomathpatchAMS{alignat}%
+  \linenomathpatchAMS{flalign}%
+}
+}
 
 % \makevruler[<SCALE>][<INITIAL_COUNT>][<STEP>][<DIGITS>][<HEIGHT>]
 \def\cvprruler#1{\makevruler[12pt][#1][1][3][0.993\textheight]\usebox{\cvprrulerbox}}
 \AddToShipoutPicture{%
   \iftoggle{cvprfinal}{
   }{
-    \cvprruleroffset=\textheight
-    \advance\cvprruleroffset by -3.7pt
-      \color[rgb]{.5,.5,1}
-      \AtTextUpperLeft{%
-        \put(\LenToUnit{-35pt},\LenToUnit{-\cvprruleroffset}){%left ruler
-          \cvprruler{\cvprrulercount}}
-        %\put(\LenToUnit{\textwidth\kern 30pt},\LenToUnit{-\cvprruleroffset})
-        \put(\LenToUnit{\dimexpr \textwidth+30pt},\LenToUnit{-\cvprruleroffset}){%right ruler
-          \cvprruler{\cvprrulercount}}
-      }
-    \def\pid{\parbox{1in}{\begin{center}\bf\sf{\small \confName}\\\#\cvprPaperID\end{center}}}
-      \AtTextUpperLeft{%paperID in corners
-        \put(\LenToUnit{-65pt},\LenToUnit{45pt}){\pid}
-        \put(\LenToUnit{\textwidth\kern-8pt},\LenToUnit{45pt}){\pid}
-      }
-      \AtTextUpperLeft{%confidential
-        \put(0,\LenToUnit{1cm}){\parbox{\textwidth}{\centering\cvprtenhv
-        \confName~\confYear~Submission \#\cvprPaperID. CONFIDENTIAL REVIEW COPY.  DO NOT DISTRIBUTE.}}
-      }
+    \color[rgb]{.5,.5,1}
+
+    \def\pid{\parbox{1in}{\begin{center}\bf\sf{\small \confName}\\\#\paperID\end{center}}}
+    \AtTextUpperLeft{%paperID in corners
+      \put(\LenToUnit{-65pt},\LenToUnit{45pt}){\pid}
+      \put(\LenToUnit{\textwidth\kern-8pt},\LenToUnit{45pt}){\pid}
+    }
+    \AtTextUpperLeft{%confidential
+      \put(0,\LenToUnit{1cm}){\parbox{\textwidth}{\centering\cvprtenhv
+      \confName~\confYear~Submission \#\paperID. CONFIDENTIAL REVIEW COPY.  DO NOT DISTRIBUTE.}}
+    }
   }
 }
 
@@ -643,3 +591,37 @@
 \makeatother
 
 % ---------------------------------------------------------------
+
+%% redefine the \title command so that a variable name is saved in \thetitle, and provides the \maketitlesupplementary command 
+\let\titleold\title
+\renewcommand{\title}[1]{\titleold{#1}\newcommand{\thetitle}{#1}}
+\def\maketitlesupplementary
+   {
+   \newpage
+       \twocolumn[
+        \centering
+        \Large
+        \textbf{\thetitle}\\
+        \vspace{0.5em}Supplementary Material \\
+        \vspace{1.0em}
+       ] %< twocolumn
+   }
+
+% ---------------------------------------------------------------
+
+%% Support for easy cross-referencing (e.g. \cref{sec:intro}
+% configured with \AtEndPreamble as it needs to be called after hyperref
+\AtEndPreamble{
+    \usepackage[capitalize]{cleveref}
+    \crefname{section}{Sec.}{Secs.}
+    \Crefname{section}{Section}{Sections}
+    \Crefname{table}{Table}{Tables}
+    \crefname{table}{Tab.}{Tabs.}
+}
+
+% ---------------------------------------------------------------
+
+%% More compact compact itemize/enumeration (e.g. list contributions)
+\RequirePackage{enumitem}
+\setlist[itemize]{noitemsep,leftmargin=*,topsep=0em}
+\setlist[enumerate]{noitemsep,leftmargin=*,topsep=0em}

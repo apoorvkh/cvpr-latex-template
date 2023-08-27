@@ -8,7 +8,7 @@ This repo contains quickstart code for writing CVPR/ICCV papers in LaTeX. It is 
 
 Feel free to suggest changes or packages/macros you think are widely useful via a PR!
 
-## �� Compilation
+## 📝 Compilation
 
 Compile with `_main.tex` as the main document.
 
@@ -16,13 +16,13 @@ Compile with `_main.tex` as the main document.
 - Set `\review` OR `\arxiv` OR `\camera` in [line 2 of `_main.tex`](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_main.tex#L2).
 - In arXiv mode, `12_appendix.tex` (i.e. the supplemental material) will be appended as appendices.
 
-## �� Main sections
+## 🔬 Main sections
 
 - Update the abstract in `00_abstract.tex`
 - `\input` each paper section (e.g. `03_method.tex`) in `_main.tex`
 - Add references to `11_references.bib`
 
-## �� Packages and Macros
+## 📦 Packages and Macros
 
 Add your own packages and macros to `_macros.tex`. Some handy built-in macros:
 
@@ -31,21 +31,21 @@ Add your own packages and macros to `_macros.tex`. Some handy built-in macros:
 - Use `\supp` to refer to "supplemental material" or "appendix" in text (automatically determined based on compilation mode).
 - `\todo{}`
 
-## �� Supplementary
+## 📚 Supplementary
 
 Add supplemental material to `12_appendix.tex`. Compile with `_supplementary.tex` as the main document.
 
 - Set `\review` OR `\camera` in [line 2 of `_supplementary.tex`](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_supplementary.tex#L2).
 - You can refer to sections, references, figures, tables, etc. in the main document!
 
-## ��️ Submitting to arXiv
+## 🗃️ Submitting to arXiv
 
 1. Overleaf: Submit -> arXiv -> Download project ZIP with submission files (e.g. .bbl)
 2. Delete the following files: `README.md`, `latexmkrc`, `_supplementary.tex`, and (important!) `_rebuttal.tex`.
 3. Optionally, run [arxiv-latex-cleaner](https://github.com/google-research/arxiv-latex-cleaner).
 4. Tar/gzip the produced files and upload.
 
-## �� Rebuttal
+## 👿 Rebuttal
 
 Compile with `_rebuttal.tex` as the main document.
 

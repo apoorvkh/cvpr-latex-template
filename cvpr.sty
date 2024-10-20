@@ -25,10 +25,11 @@
 % ---------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesPackage{cvpr}[2024 Example LaTex class for IEEE CVPR]
+\ProvidesPackage{cvpr}[2025 LaTeX class for IEEE CVPR]
 
 \RequirePackage{times}    % Integrate Times for here
 \RequirePackage{xspace}
+\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -40,7 +41,6 @@
 \hbadness=10000 \vbadness=10000 \vfuzz=30pt \hfuzz=30pt
 \WarningFilter{latexfont}{Font shape declaration}
 \WarningFilter{latex}{Font shape}
-\WarningFilter{hyperref}{Token not allowed in a PDF string}
 \WarningFilter[rebuttal]{latex}{No \author given}
 \RequirePackage{etoolbox}
 
@@ -73,6 +73,7 @@
 
 
 % ---------------------------------------------------------------
+% Inlined version of the obsolete "everyshi-2001-05-15" package.
 \newcommand{\@EveryShipout@Hook}{}
 \newcommand{\@EveryShipout@AtNextHook}{}
 \newcommand*{\EveryShipout}[1]
@@ -103,13 +104,12 @@
    \let\shipout\@EveryShipout@Shipout
    }
 \AtBeginDocument{\@EveryShipout@Init}
-
 % ---------------------------------------------------------------
 
 
-
+% ---------------------------------------------------------------
+% Inlined simplified version of the "eso-pic" package.
 \newcommand\LenToUnit[1]{#1\@gobble}
-
 \newcommand\AtPageUpperLeft[1]{%
   \begingroup
     \@tempdima=0pt\relax\@tempdimb=\ESO@yoffsetI\relax
@@ -179,71 +179,9 @@
 }
 \EveryShipout{\@ShipoutPicture}
 \RequirePackage{keyval}
-\newif\ifESO@dvips\ESO@dvipsfalse \newif\ifESO@grid\ESO@gridfalse
+\newif\ifESO@dvips\ESO@dvipsfalse
 \newif\ifESO@texcoord\ESO@texcoordfalse
-\newcommand*\ESO@gridunitname{}
-\newcommand*\ESO@gridunit{}
-\newcommand*\ESO@labelfactor{}
-\newcommand*\ESO@griddelta{}\newcommand*\ESO@griddeltaY{}
-\newcommand*\ESO@gridDelta{}\newcommand*\ESO@gridDeltaY{}
-\newcommand*\ESO@gridcolor{}
-\newcommand*\ESO@subgridcolor{}
-\newcommand*\ESO@subgridstyle{dotted}% ???
-\newcommand*\ESO@gap{}
-\newcommand*\ESO@yoffsetI{}\newcommand*\ESO@yoffsetII{}
-\newcommand*\ESO@gridlines{\thinlines}
-\newcommand*\ESO@subgridlines{\thinlines}
-\newcommand*\ESO@hline[1]{\ESO@subgridlines\line(1,0){#1}}
-\newcommand*\ESO@vline[1]{\ESO@subgridlines\line(0,1){#1}}
-\newcommand*\ESO@Hline[1]{\ESO@gridlines\line(1,0){#1}}
-\newcommand*\ESO@Vline[1]{\ESO@gridlines\line(0,1){#1}}
-\newcommand\ESO@fcolorbox[4][]{\fbox{#4}}
-\newcommand\ESO@color[1]{}
-\newcommand\ESO@colorbox[3][]{%
-  \begingroup
-    \fboxrule=0pt\fbox{#3}%
-  \endgroup
-}
-\newcommand\gridSetup[6][]{%
-  \edef\ESO@gridunitname{#1}\edef\ESO@gridunit{#2}
-  \edef\ESO@labelfactor{#3}\edef\ESO@griddelta{#4}
-  \edef\ESO@gridDelta{#5}\edef\ESO@gap{#6}}
-\define@key{ESO}{texcoord}[true]{\csname ESO@texcoord#1\endcsname}
-\define@key{ESO}{pscoord}[true]{\csname @tempswa#1\endcsname
-  \if@tempswa\ESO@texcoordfalse\else\ESO@texcoordtrue\fi}
-\define@key{ESO}{dvips}[true]{\csname ESO@dvips#1\endcsname}
-\define@key{ESO}{grid}[true]{\csname ESO@grid#1\endcsname
-  \setkeys{ESO}{gridcolor=black,subgridcolor=black}}
-\define@key{ESO}{colorgrid}[true]{\csname ESO@grid#1\endcsname
-  \setkeys{ESO}{gridcolor=red,subgridcolor=green}}
-\define@key{ESO}{gridcolor}{\def\ESO@gridcolor{#1}}
-\define@key{ESO}{subgridcolor}{\def\ESO@subgridcolor{#1}}
-\define@key{ESO}{subgridstyle}{\def\ESO@subgridstyle{#1}}%
-\define@key{ESO}{gridunit}{%
-  \def\@tempa{#1}
-  \def\@tempb{bp}
-  \ifx\@tempa\@tempb
-    \gridSetup[\@tempa]{1bp}{1}{10}{50}{2}
-  \else
-    \def\@tempb{pt}
-    \ifx\@tempa\@tempb
-      \gridSetup[\@tempa]{1pt}{1}{10}{50}{2}
-    \else
-      \def\@tempb{in}
-      \ifx\@tempa\@tempb
-        \gridSetup[\@tempa]{.1in}{.1}{2}{10}{.5}
-      \else
-        \gridSetup[mm]{1mm}{1}{5}{20}{1}
-      \fi
-    \fi
-  \fi
-}
 
-
-\newcommand\ESO@div[2]{%
-  \@tempdima=#1\relax\@tempdimb=\ESO@gridunit\relax
-  \@tempdimb=#2\@tempdimb\divide\@tempdima by \@tempdimb%
-  \@tempcnta\@tempdima\advance\@tempcnta\@ne}
 \AtBeginDocument{%
   \IfFileExists{color.sty}
   {%
@@ -265,81 +203,13 @@
       \fi
     \fi
   \fi
-  \ifESO@dvips\def\@tempb{eepic}\else\def\@tempb{epic}\fi
-  \def\@tempa{dotted}%\def\ESO@gap{\LenToUnit{6\@wholewidth}}%
-  \ifx\@tempa\ESO@subgridstyle
-    \IfFileExists{\@tempb.sty}%
-    {%
-      \RequirePackage{\@tempb}
-      \renewcommand*\ESO@hline[1]{\ESO@subgridlines\dottedline{\ESO@gap}%
-        (0,0)(##1,0)}
-      \renewcommand*\ESO@vline[1]{\ESO@subgridlines\dottedline{\ESO@gap}%
-        (0,0)(0,##1)}
-    }{}
-  \else
-    \ifx\ESO@gridcolor\ESO@subgridcolor%
-      \renewcommand*\ESO@gridlines{\thicklines}
-    \fi
-  \fi
 }
 \ifESO@texcoord
   \def\ESO@yoffsetI{0pt}\def\ESO@yoffsetII{-\paperheight}
-  \edef\ESO@griddeltaY{-\ESO@griddelta}\edef\ESO@gridDeltaY{-\ESO@gridDelta}
 \else
   \def\ESO@yoffsetI{\paperheight}\def\ESO@yoffsetII{0pt}
-  \edef\ESO@griddeltaY{\ESO@griddelta}\edef\ESO@gridDeltaY{\ESO@gridDelta}
 \fi
-\newcommand\ESO@gridpicture{%
-  \begingroup
-    \setlength\unitlength{\ESO@gridunit}%
-    \ESO@color{\ESO@subgridcolor}%
-    \ESO@div{\paperheight}{\ESO@griddelta}%
-    \multiput(0,0)(0,\ESO@griddeltaY){\@tempcnta}%
-      {\ESO@hline{\LenToUnit{\paperwidth}}}%
-    \ESO@div{\paperwidth}{\ESO@griddelta}%
-    \multiput(0,\LenToUnit{\ESO@yoffsetII})(\ESO@griddelta,0){\@tempcnta}%
-      {\ESO@vline{\LenToUnit{\paperheight}}}%
-    \ESO@color{\ESO@gridcolor}%
-    \ESO@div{\paperheight}{\ESO@gridDelta}%
-    \multiput(0,0)(0,\ESO@gridDeltaY){\@tempcnta}%
-      {\ESO@Hline{\LenToUnit{\paperwidth}}}%
-    \ESO@div{\paperwidth}{\ESO@gridDelta}%
-    \multiput(0,\LenToUnit{\ESO@yoffsetII})(\ESO@gridDelta,0){\@tempcnta}%
-      {\ESO@Vline{\LenToUnit{\paperheight}}}%
-    \fontsize{10}{12}\normalfont%
-    \ESO@div{\paperwidth}{\ESO@gridDelta}%
-    \multiput(0,\ESO@gridDeltaY)(\ESO@gridDelta,0){\@tempcnta}{%
-      \@tempcntb=\@tempcnta\advance\@tempcntb-\@multicnt%
-      \ifnum\@tempcntb>1\relax
-        \multiply\@tempcntb by \ESO@gridDelta\relax%
-        \@tempdima=\@tempcntb sp\@tempdima=\ESO@labelfactor\@tempdima%
-        \@tempcntb=\@tempdima%
-        \makebox(0,0)[c]{\ESO@colorbox{white}{\the\@tempcntb}}%
-      \fi}%
-    \ifx\ESO@gridunitname\@empty\def\@tempa{0}\else\def\@tempa{1}\fi%
-    \ESO@div{\paperheight}{\ESO@gridDelta}%
-    \multiput(\ESO@gridDelta,0)(0,\ESO@gridDeltaY){\@tempcnta}{%
-      \@tempcntb=\@tempcnta\advance\@tempcntb-\@multicnt%
-      \ifnum\@tempcntb>\@tempa\relax
-        \multiply\@tempcntb by \ESO@gridDelta\relax%
-        \@tempdima=\@tempcntb sp\@tempdima=\ESO@labelfactor\@tempdima%
-        \@tempcntb=\@tempdima%
-        \makebox(0,0)[c]{\ESO@colorbox{white}{\the\@tempcntb}}%
-      \fi
-    }%
-    \ifx\ESO@gridunitname\@empty\else%
-      \thicklines\fboxrule=\@wholewidth%
-      \put(\ESO@gridDelta,\ESO@gridDeltaY){\makebox(0,0)[c]{%
-        \ESO@fcolorbox{\ESO@gridcolor}{white}{%
-          \textbf{\ESO@gridunitname}}}}%
-    \fi
-    \normalcolor%
-  \endgroup
-}
-\ifESO@grid\g@addto@macro\ESO@HookIII{\ESO@gridpicture}\fi
 % ---------------------------------------------------------------
-
-
 
 
 \typeout{CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.}
@@ -350,11 +220,13 @@
 % change the name here:
 \font\cvprtenhv  = phvb at 8pt % *** IF THIS FAILS, SEE cvpr.sty ***
 \font\elvbf  = ptmb scaled 1100
+\font\tenbf  = ptmb scaled 1000
 
 % If the above lines give an error message, try to comment them and
 % uncomment these:
 %\font\cvprtenhv  = phvb7t at 8pt
 %\font\elvbf  = ptmb7t scaled 1100
+%\font\tenbf  = ptmb7t scaled 1000
 
 % set dimensions of columns, gap between columns, and paragraph indent
 \setlength{\textheight}{8.875in}
@@ -364,8 +236,8 @@
 \setlength{\headheight}{0in}
 \setlength{\headsep}{0in}
 \setlength{\parindent}{1pc}
-\setlength{\oddsidemargin}{-.304in}
-\setlength{\evensidemargin}{-.304in}
+\setlength{\oddsidemargin}{-0.1875in}
+\setlength{\evensidemargin}{-0.1875in}
 
 
 % Suppress page numbers when the appropriate option is given
@@ -441,8 +313,8 @@
      \thispagestyle{empty}
    }
    \centerline{\large\bf Abstract}%
-   \vspace*{12pt}%
-   \it%
+   \vspace*{12pt}\noindent%
+   \it\ignorespaces%
 }
 
 \def\endabstract{%
@@ -456,109 +328,119 @@
 \def\cvprsection{\@startsection {section}{1}{\z@}
    {-10pt plus -2pt minus -2pt}{7pt} {\large\bf}}
 \def\cvprssect#1{\cvprsection*{#1}}
-\def\cvprsect#1{\cvprsection{\hskip -1em.~#1}}
+\def\cvprsect#1{\cvprsection{\texorpdfstring{\hskip -1em.~}{}#1}}
 \def\section{\@ifstar\cvprssect\cvprsect}
 
 \def\cvprsubsection{\@startsection {subsection}{2}{\z@}
-   {-8pt plus -2pt minus -2pt}{6pt} {\elvbf}}
+   {-8pt plus -2pt minus -2pt}{5pt} {\elvbf}}
 \def\cvprssubsect#1{\cvprsubsection*{#1}}
-\def\cvprsubsect#1{\cvprsubsection{\hskip -1em.~#1}}
+\def\cvprsubsect#1{\cvprsubsection{\texorpdfstring{\hskip -1em.~}{}#1}}
 \def\subsection{\@ifstar\cvprssubsect\cvprsubsect}
 
-%% --------- Page background marks: Ruler and confidentiality
+\def\cvprsubsubsection{\@startsection {subsubsection}{3}{\z@}
+   {-6pt plus -2pt minus -2pt}{3pt} {\tenbf}}
+\def\cvprssubsubsect#1{\cvprsubsubsection*{#1}}
+\def\cvprsubsubsect#1{\cvprsubsubsection{\texorpdfstring{\hskip -1em.~}{}#1}}
+\def\subsubsection{\@ifstar\cvprssubsubsect\cvprsubsubsect}
 
-% ----- define vruler
-\makeatletter
-\newbox\cvprrulerbox
-\newcount\cvprrulercount
-\newdimen\cvprruleroffset
-\newdimen\cv@lineheight
-\newdimen\cv@boxheight
-\newbox\cv@tmpbox
-\newcount\cv@refno
-\newcount\cv@tot
-% NUMBER with left flushed zeros  \fillzeros[<WIDTH>]<NUMBER>
-\newcount\cv@tmpc@ \newcount\cv@tmpc
-\def\fillzeros[#1]#2{\cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi
-\cv@tmpc=1 %
-\loop\ifnum\cv@tmpc@<10 \else \divide\cv@tmpc@ by 10 \advance\cv@tmpc by 1 \fi
-   \ifnum\cv@tmpc@=10\relax\cv@tmpc@=11\relax\fi \ifnum\cv@tmpc@>10 \repeat
-\ifnum#2<0\advance\cv@tmpc1\relax-\fi
-\loop\ifnum\cv@tmpc<#1\relax0\advance\cv@tmpc1\relax\fi \ifnum\cv@tmpc<#1 \repeat
-\cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi \relax\the\cv@tmpc@}%
-\makeatother
-% ----- end of vruler
+%% --------- Page background marks: Ruler and confidentiality (only for review and rebuttal)
+\iftoggle{cvprfinal}{
+  % In review and rebuttal mode, we use the "lineno" package for numbering lines.
+  % When switching to a different mode, the "\@LN" macro may remain in cached .aux files,
+  % leading to build errors (https://github.com/cvpr-org/author-kit/issues/49).
+  % Defining the macro as empty fixes that (https://tex.stackexchange.com/a/125779).
+  \makeatletter
+  \providecommand{\@LN}[2]{}
+  \makeatother
+}{
+  % ----- define vruler
+  \makeatletter
+  \newbox\cvprrulerbox
+  \newcount\cvprrulercount
+  \newdimen\cvprruleroffset
+  \newdimen\cv@lineheight
+  \newdimen\cv@boxheight
+  \newbox\cv@tmpbox
+  \newcount\cv@refno
+  \newcount\cv@tot
+  % NUMBER with left flushed zeros  \fillzeros[<WIDTH>]<NUMBER>
+  \newcount\cv@tmpc@ \newcount\cv@tmpc
+  \def\fillzeros[#1]#2{\cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi
+  \cv@tmpc=1 %
+  \loop\ifnum\cv@tmpc@<10 \else \divide\cv@tmpc@ by 10 \advance\cv@tmpc by 1 \fi
+    \ifnum\cv@tmpc@=10\relax\cv@tmpc@=11\relax\fi \ifnum\cv@tmpc@>10 \repeat
+  \ifnum#2<0\advance\cv@tmpc1\relax-\fi
+  \loop\ifnum\cv@tmpc<#1\relax0\advance\cv@tmpc1\relax\fi \ifnum\cv@tmpc<#1 \repeat
+  \cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi \relax\the\cv@tmpc@}%
+  \makeatother
+  % ----- end of vruler
 
-%% Define linenumber setup
-\RequirePackage[switch,mathlines]{lineno}
+  %% Define linenumber setup
+  \RequirePackage[switch,mathlines]{lineno}
 
-% Line numbers in CVPR blue using font from \cvprtenhv
-\renewcommand\linenumberfont{\cvprtenhv\color[rgb]{.5,.5,1}}
+  % Line numbers in CVPR blue using font from \cvprtenhv
+  \renewcommand\linenumberfont{\cvprtenhv\color[rgb]{.5,.5,1}}
 
-\renewcommand\thelinenumber{\fillzeros[3]{\arabic{linenumber}}}
+  \renewcommand\thelinenumber{\fillzeros[3]{\arabic{linenumber}}}
 
-\setlength{\linenumbersep}{.75cm}
+  \setlength{\linenumbersep}{.75cm}
 
-% Bug: An equation with $$ ... $$ isn't numbered, nor is the previous line.
+  % Bug: An equation with $$ ... $$ isn't numbered, nor is the previous line.
 
-% Patch amsmath commands so that the previous line and the equation itself
-% are numbered. Bug: multiline has an extra line number.
-% https://tex.stackexchange.com/questions/461186/how-to-use-lineno-with-amsmath-align
-\RequirePackage{etoolbox} %% <- for \pretocmd, \apptocmd and \patchcmd
+  % Patch amsmath commands so that the previous line and the equation itself
+  % are numbered. Bug: multiline has an extra line number.
+  % https://tex.stackexchange.com/questions/461186/how-to-use-lineno-with-amsmath-align
+  \RequirePackage{etoolbox} %% <- for \pretocmd, \apptocmd and \patchcmd
 
-\newcommand*\linenomathpatch[1]{%
-  \expandafter\pretocmd\csname #1\endcsname {\linenomath}{}{}%
-  \expandafter\pretocmd\csname #1*\endcsname {\linenomath}{}{}%
-  \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
-  \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
-}
-\newcommand*\linenomathpatchAMS[1]{%
-  \expandafter\pretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
-  \expandafter\pretocmd\csname #1*\endcsname {\linenomathAMS}{}{}%
-  \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
-  \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
-}
+  \newcommand*\linenomathpatch[1]{%
+    \expandafter\pretocmd\csname #1\endcsname {\linenomath}{}{}%
+    \expandafter\pretocmd\csname #1*\endcsname {\linenomath}{}{}%
+    \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+    \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
+  }
+  \newcommand*\linenomathpatchAMS[1]{%
+    \expandafter\pretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
+    \expandafter\pretocmd\csname #1*\endcsname {\linenomathAMS}{}{}%
+    \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+    \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
+  }
 
-%% Definition of \linenomathAMS depends on whether the mathlines option is provided
-\expandafter\ifx\linenomath\linenomathWithnumbers
-\let\linenomathAMS\linenomathWithnumbers
-%% The following line gets rid of an extra line numbers at the bottom:
-\patchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
-\else
-\let\linenomathAMS\linenomathNonumbers
-\fi
+  %% Definition of \linenomathAMS depends on whether the mathlines option is provided
+  \expandafter\ifx\linenomath\linenomathWithnumbers
+  \let\linenomathAMS\linenomathWithnumbers
+  %% The following line gets rid of an extra line numbers at the bottom:
+  \patchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
+  \else
+  \let\linenomathAMS\linenomathNonumbers
+  \fi
 
-\iftoggle{cvprfinal}{}{
-% Add the numbers
-\linenumbers
-\AtBeginDocument{%
-  \linenomathpatch{equation}%
-  \linenomathpatchAMS{gather}%
-  \linenomathpatchAMS{multline}%
-  \linenomathpatchAMS{align}%
-  \linenomathpatchAMS{alignat}%
-  \linenomathpatchAMS{flalign}%
-}
-}
+  % Add the numbers
+  \linenumbers
+  \AtBeginDocument{%
+    \linenomathpatch{equation}%
+    \linenomathpatchAMS{gather}%
+    \linenomathpatchAMS{multline}%
+    \linenomathpatchAMS{align}%
+    \linenomathpatchAMS{alignat}%
+    \linenomathpatchAMS{flalign}%
+  }
 
-% \makevruler[<SCALE>][<INITIAL_COUNT>][<STEP>][<DIGITS>][<HEIGHT>]
-\def\cvprruler#1{\makevruler[12pt][#1][1][3][0.993\textheight]\usebox{\cvprrulerbox}}
-\AddToShipoutPicture{%
-  \iftoggle{cvprfinal}{
-  }{
+  % \makevruler[<SCALE>][<INITIAL_COUNT>][<STEP>][<DIGITS>][<HEIGHT>]
+  \def\cvprruler#1{\makevruler[12pt][#1][1][3][0.993\textheight]\usebox{\cvprrulerbox}}
+  \AddToShipoutPicture{%
     \color[rgb]{.5,.5,1}
 
-    \def\pid{\parbox{1in}{\begin{center}\bf\sf{\small \confName}\\\#\paperID\end{center}}}
+    \def\pid{\parbox{1in}{\begin{center}\bf\sf{\small \confName}\\\small \#\paperID\end{center}}}
     \AtTextUpperLeft{%paperID in corners
       \put(\LenToUnit{-65pt},\LenToUnit{45pt}){\pid}
-      \put(\LenToUnit{\textwidth\kern-8pt},\LenToUnit{45pt}){\pid}
+      \put(\LenToUnit{\textwidth-12pt},\LenToUnit{45pt}){\pid}
     }
     \AtTextUpperLeft{%confidential
       \put(0,\LenToUnit{1cm}){\parbox{\textwidth}{\centering\cvprtenhv
       \confName~\confYear~Submission \#\paperID. CONFIDENTIAL REVIEW COPY.  DO NOT DISTRIBUTE.}}
     }
   }
-}
+} % end of not cvprfinal
 
 %%% Make figure placement a little more predictable.
 % We trust the user to move figures if this results
@@ -591,7 +473,7 @@
 
 % ---------------------------------------------------------------
 
-%% redefine the \title command so that a variable name is saved in \thetitle, and provides the \maketitlesupplementary command 
+%% redefine the \title command so that a variable name is saved in \thetitle, and provides the \maketitlesupplementary command
 \let\titleold\title
 \renewcommand{\title}[1]{\titleold{#1}\newcommand{\thetitle}{#1}}
 \def\maketitlesupplementary
@@ -621,6 +503,6 @@
 % ---------------------------------------------------------------
 
 %% More compact compact itemize/enumeration (e.g. list contributions)
-\RequirePackage{enumitem}
+\RequirePackage[shortlabels,inline]{enumitem}
 \setlist[itemize]{noitemsep,leftmargin=*,topsep=0em}
 \setlist[enumerate]{noitemsep,leftmargin=*,topsep=0em}

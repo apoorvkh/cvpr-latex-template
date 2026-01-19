@@ -12,7 +12,7 @@ Feel free to suggest changes or packages/macros you think are widely useful via 
 Compile with `_main.tex` as the main document.
 
 - Modify paper metadata in `_constants.tex`. Change [confName](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_constants.tex#L2) to ICCV if applicable.
-- Set `\review` OR `\arxiv` OR `\camera` in [line 2 of `_main.tex`](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_main.tex#L2).
+- Set `\review` OR `\arxiv` OR `\cameraready` in [line 2 of `_main.tex`](https://github.com/apoorvkh/cvpr-latex-template/blob/main/_main.tex#L2).
 - In arXiv mode, `12_appendix.tex` (i.e. the supplemental material) will be appended as appendices.
 
 ## 🔬 Main sections
